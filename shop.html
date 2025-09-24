@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CrossWears</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  
+</head>
+<body>
+
+  <header>
+  <div class="left-section">
+    <button class="hamburger" id="hamburger">&#9776;</button>
+    <a href="index.html"><img src="logo.png" alt="Logo"></a>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html" class="active">Shop</a></li>
+      <li><a href="about.html">Despre noi</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="cart-container">
+    <a href="cart.html">
+      <button class="cart-btn">
+        <i class="fas fa-shopping-cart"></i> Coș 
+        <span id="cart-count">0</span>
+      </button>
+    </a>
+    <div class="cart-dropdown" id="cart-dropdown">
+      <p>Coșul este gol</p>
+    </div>
+  </div>
+
+  <!-- Slidebar (pentru mobil) -->
+  <!-- Slidebar (pentru mobil) -->
+<nav id="mobile-nav">
+  <div class="mobile-nav-header">
+    <button class="close-btn" id="close-btn">&times;</button>
+    <a href="index.html"><img src="logo.png" alt="Logo" class="sidebar-logo"></a>
+  </div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html" class="active">Shop</a></li>
+    <li><a href="about.html">Despre noi</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+</header>
+
+  <div class="shop-container2">
+    <aside class="filter2">
+      <h3>Filtre</h3>
+      <input type="text" placeholder="Caută tricou..." onkeyup="searchProducts2(this.value)">
+      <select onchange="sortProducts2(this.value)">
+        <option value="">Sortează după...</option>
+        <option value="alpha">Alfabetic</option>
+        <option value="price">Preț</option>
+      </select>
+    </aside>
+
+    <section class="products2">
+      <h2>Produse</h2>
+      <div class="product-grid2"></div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="#about">Despre noi</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="social-icons">
+    <a href="https://www.facebook.com/profilul-tau" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.instagram.com/_david_b26?igsh=MTliMnB4bHN0eWwxbw==" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://twitter.com/profilul-tau" target="_blank"><i class="fab fa-twitter"></i></a>
+  </div>
+    <div class="copyright">
+      © 2025 CrossWears. Toate drepturile rezervate.
+    </div>
+  </footer>
+<script>
+    const products2 = [
+        { name: "Tricou Wave", price: 100, img: "image/tricou wave front.png", link: "tricou wave.html" },
+       { name: "Tricou Gratitude", price: 100, img: "image/tricou gratitude front.png", link: "tricou2.html" },
+       { name: "Tricou Lion of Judah", price: 100, img: "image/tricou lion front.png", link: "tricou3.html" },
+       { name: "Tricou Ps 15", price: 100, img: "image/tricou ps15 front.png", link: "tricou4.html" },
+       { name: "Tricou King od Glory", price: 100, img: "image/tricou king front.png.", link: "tricou5.html" },
+       { name: "Tricou Ps 23", price: 100, img: "image/tricou ps23 front.png", link: "tricou6.html" },
+       { name: "Tricou Already won", price: 90, img: "image/tricou won front.png", link: "tricou7.html" },
+       { name: "Hodie Wave", price: 150, img: "image/hodie wave front.png", link: "tricou8.html" },
+       { name: "Hodie Gratitude", price: 150, img: "image/hodie gratitude front.png", link: "tricou9.html" },
+       { name: "Hodie Lion of Judah", price: 150, img: "image/hodie lion front.png", link: "tricou10.html" },
+       { name: "Hodie Ps 15", price: 150, img: "image/hodie ps15 front.png", link: "tricou11.html" },
+       { name: "Hodie King of Glory", price: 150, img: "image/hodie king front.png", link: "tricou12.html" },
+       { name: "Hodie Ps 23", price: 150, img: "image/hodie ps23 front.png", link: "tricou13.html" },
+       { name: "Hodie Already won", price: 140, img: "image/hodie won front.png", link: "tricou14.html" },
+    ];
+
+    function displayProducts2(list) {
+      const grid = document.querySelector(".product-grid2");
+      grid.innerHTML = "";
+      list.forEach(p => {
+        const card = document.createElement("a");
+        card.className = "product-card2";
+        card.href = p.link;
+        card.innerHTML = `
+          <img src="${p.img}" alt="${p.name}">
+          <h4>${p.name}</h4>
+          <p>${p.price} RON</p>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function sortProducts2(type) {
+      let sorted = [...products2];
+      if (type === "alpha") sorted.sort((a, b) => a.name.localeCompare(b.name));
+      if (type === "price") sorted.sort((a, b) => a.price - b.price);
+      displayProducts2(sorted);
+    }
+
+    function searchProducts2(query) {
+      const filtered = products2.filter(p => p.name.toLowerCase().includes(query.toLowerCase()));
+      displayProducts2(filtered);
+    }
+
+    window.onload = () => displayProducts2(products2);
+
+
+
+    // cos vizibil
+
+document.addEventListener("DOMContentLoaded", () => {
+  const cartBtn = document.querySelector(".cart-btn");
+  const cartDropdown = document.createElement("div");
+  cartDropdown.classList.add("cart-dropdown");
+  cartDropdown.style.display = "none";
+  document.body.appendChild(cartDropdown);
+
+  function updateCartDropdown() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cartBtn.innerHTML = `<i class="fas fa-shopping-cart"></i> Coș (${cart.reduce((sum, item) => sum + item.quantity, 0)})`;
+
+    cartDropdown.innerHTML = "";
+    if (cart.length === 0) {
+      cartDropdown.innerHTML = "<p>Coșul este gol</p>";
+      return;
+    }
+
+    cart.forEach(item => {
+      const div = document.createElement("div");
+      div.classList.add("cart-item3");
+      div.innerHTML = `
+        <img src="${item.image}" alt="${item.title}">
+        <div>
+          <p><strong>${item.title} (${item.color})</strong></p>
+          <p>${item.price} RON</p>
+          <p>Cantitate: ${item.quantity}</p>
+        </div>`;
+      cartDropdown.appendChild(div);
+    });
+  }
+
+  // Hover pentru dropdown
+  cartBtn.addEventListener("mouseenter", () => {
+    updateCartDropdown();
+    cartDropdown.style.display = "block";
+    const rect = cartBtn.getBoundingClientRect();
+    cartDropdown.style.position = "absolute";
+    cartDropdown.style.top = rect.bottom + "px";
+    cartDropdown.style.left = rect.right - 250 + "px";
+    cartDropdown.style.width = "250px";
+    cartDropdown.style.background = "#fff";
+    cartDropdown.style.border = "1px solid #ccc";
+    cartDropdown.style.padding = "10px";
+    cartDropdown.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
+    cartDropdown.style.zIndex = "200";
+  });
+
+  cartBtn.addEventListener("mouseleave", () => {
+    cartDropdown.style.display = "none";
+  });
+
+  cartDropdown.addEventListener("mouseenter", () => {
+    cartDropdown.style.display = "block";
+  });
+
+  cartDropdown.addEventListener("mouseleave", () => {
+    cartDropdown.style.display = "none";
+  });
+
+  updateCartDropdown(); // actualizează imediat la load
+});
+
+
+// meniul hamburger
+
+
+ 
+  const hamburger = document.getElementById("hamburger");
+  const mobileNav = document.getElementById("mobile-nav");
+  const closeBtn = document.getElementById("close-btn");
+
+  hamburger.addEventListener("click", () => {
+    mobileNav.classList.add("open");
+  });
+
+  closeBtn.addEventListener("click", () => {
+    mobileNav.classList.remove("open");
+  });
+  </script>
+</body>
+</html>
+
+
+    

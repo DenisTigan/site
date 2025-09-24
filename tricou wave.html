@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CrossWears</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- NAVBAR COMUN -->
+  <!-- inserează aici navbar-ul de pe home/shop -->
+ <header>
+  <div class="left-section">
+    <button class="hamburger" id="hamburger">&#9776;</button>
+    <a href="index.html"><img src="logo.png" alt="Logo"></a>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html" class="active">Shop</a></li>
+      <li><a href="about.html">Despre noi</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="cart-container">
+    <a href="cart.html">
+      <button class="cart-btn">
+        <i class="fas fa-shopping-cart"></i> Coș 
+        <span id="cart-count">0</span>
+      </button>
+    </a>
+    <div class="cart-dropdown" id="cart-dropdown">
+      <p>Coșul este gol</p>
+    </div>
+  </div>
+
+  <!-- Slidebar (pentru mobil) -->
+  <!-- Slidebar (pentru mobil) -->
+<nav id="mobile-nav">
+  <div class="mobile-nav-header">
+    <button class="close-btn" id="close-btn">&times;</button>
+    <a href="index.html"><img src="logo.png" alt="Logo" class="sidebar-logo"></a>
+  </div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html" class="active">Shop</a></li>
+    <li><a href="about.html">Despre noi</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+</header>
+  <main class="product-page">
+     <div class="product-container2">
+      <!-- slider imagini tricou -->
+      <div class="product-image2">
+  <!-- imagini principale -->
+  <img src="image/tricou wave front.png" alt="Tricou față" class="active">
+  <img src="image/tricou wave back.png" alt="Tricou spate">
+
+  <!-- săgeți -->
+  <button class="arrow2 left" id="prev">&#10094;</button>
+  <button class="arrow2 right" id="next">&#10095;</button>
+
+  <!-- dots -->
+  <div class="image-dots2">
+    <span class="dot2 active" data-index="0"></span>
+    <span class="dot2" data-index="1"></span>
+  </div>
+</div>
+
+      <!-- detalii produs -->
+      <div class="product-details2">
+        <h2 class="product-title2">Even the wind and waves obey Him</h2>
+        <p class="product-price2">100,00 RON</p>
+        <p class="product-tax2">Taxe incluse</p>
+
+        <!-- mărimi -->
+        <div class="product-sizes2">
+          <span>Size</span>
+          <button>XS</button>
+          <button>S</button>
+          <button>M</button>
+          <button>L</button>
+        </div>
+
+        <!-- cantitate -->
+        <div class="product-quantity2">
+          <span>Cantitate</span>
+          <div class="quantity-controls2">
+            <button id="decrease">-</button>
+            <span id="quantity">1</span>
+            <button id="increase">+</button>
+          </div>
+        </div>
+        <div class="product-colors2">
+          <span>Culoare</span>
+          <div class="color-options2">
+            <span class="color-circle2" data-color="alb" style="background:white;"></span>
+            <span class="color-circle2" data-color="verde" style="background:green;"></span>
+            <span class="color-circle2" data-color="negru" style="background:black;"></span>
+          </div>
+        </div>
+        <!-- butoane -->
+        <div class="product-actions2">
+          <button class="add-to-cart2">Adăugați în coș</button>
+          <button class="buy-now2">Cumpărați acum</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+
+
+  <!-- FOOTER COMUN -->
+  <!-- inserează aici footer-ul de pe home/shop -->
+   <footer>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">Despre noi</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="social-icons">
+    <a href="https://www.facebook.com/profilul-tau" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.instagram.com/_david_b26?igsh=MTliMnB4bHN0eWwxbw==" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://twitter.com/profilul-tau" target="_blank"><i class="fab fa-twitter"></i></a>
+  </div>
+    <div class="copyright">
+      © 2025 CrossWears. Toate drepturile rezervate.
+    </div>
+  </footer>
+  <script>
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  // === Cantitate ===
+  const decreaseBtn = document.getElementById("decrease");
+  const increaseBtn = document.getElementById("increase");
+  const quantitySpan = document.getElementById("quantity");
+  const addToCartBtn = document.querySelector(".add-to-cart2");
+  const cartBtn = document.querySelector(".cart-btn");
+
+  let quantity = 1;
+
+  decreaseBtn.addEventListener("click", () => {
+    if (quantity > 1) {
+      quantity--;
+      quantitySpan.textContent = quantity;
+    }
+  });
+
+  increaseBtn.addEventListener("click", () => {
+    quantity++;
+    quantitySpan.textContent = quantity;
+  });
+
+  // === Slider imagini + culori ===
+  let currentIndex = 0;
+  let currentColor = "alb";
+
+  const productImages = {
+    alb: ["image/tricou wave front.png", "image/tricou wave back.png"],
+    verde: ["image/tricou wave front verde.png", "image/tricou wave back verde.png"],
+    negru: ["image/tricou wave front black.png", "image/tricou wave back black.png"]
+  };
+
+  const images = document.querySelectorAll(".product-image2 img");
+  const dots = document.querySelectorAll(".dot2");
+  const prevBtn = document.getElementById("prev");
+  const nextBtn = document.getElementById("next");
+
+  function showImage(index) {
+    if (index < 0) index = images.length - 1;
+    if (index >= images.length) index = 0;
+    currentIndex = index;
+
+    images.forEach((img, i) => {
+      img.src = productImages[currentColor][i];
+      img.classList.toggle("active", i === currentIndex);
+    });
+
+    dots.forEach((dot, i) => dot.classList.toggle("active", i === currentIndex));
+  }
+
+  prevBtn.addEventListener("click", () => showImage(currentIndex - 1));
+  nextBtn.addEventListener("click", () => showImage(currentIndex + 1));
+  dots.forEach((dot, i) => dot.addEventListener("click", () => showImage(i)));
+
+  // schimbă culoarea
+  const colorCircles = document.querySelectorAll(".color-circle2");
+  colorCircles.forEach(circle => {
+    circle.addEventListener("click", () => {
+      currentColor = circle.getAttribute("data-color");
+      currentIndex = 0;
+      showImage(0);
+    });
+  });
+
+  // inițial
+  showImage(0);
+
+  // === CART DROPDOWN ===
+  const cartDropdown = document.createElement("div");
+  cartDropdown.classList.add("cart-dropdown");
+  cartDropdown.style.display = "none";
+  document.body.appendChild(cartDropdown);
+
+  const cartSummary = document.createElement("div");
+  cartSummary.classList.add("cart-summary");
+  cartDropdown.appendChild(cartSummary);
+
+  // citesc coșul din localStorage la încărcare
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // funcție de update coș
+  function updateCartUI() {
+    // update număr în buton
+    cartBtn.innerHTML = `<i class="fas fa-shopping-cart"></i> Coș (${cart.reduce((sum, item) => sum + item.quantity, 0)})`;
+
+    // refac dropdown-ul
+    cartSummary.innerHTML = "";
+    let total = 0;
+
+    cart.forEach(item => {
+      const div = document.createElement("div");
+      div.classList.add("cart-item");
+      div.innerHTML = `
+        <img src="${item.image}" alt="${item.title}">
+        <div>
+          <p><strong>Tricou ${item.color}</strong></p>
+          <p>${item.price} RON</p>
+          <p>Cantitate: ${item.quantity}</p>
+        </div>`;
+      cartSummary.appendChild(div);
+
+      total += parseFloat(item.price) * item.quantity;
+    });
+
+    if (cart.length > 0) {
+      const totalDiv = document.createElement("div");
+      totalDiv.classList.add("cart-total");
+      totalDiv.innerHTML = `<strong>Total: ${total.toFixed(2)} RON</strong>`;
+      cartSummary.appendChild(totalDiv);
+
+      const viewCartBtn = document.createElement("button");
+      viewCartBtn.textContent = "Vezi coșul";
+      viewCartBtn.classList.add("view-cart-btn");
+      viewCartBtn.addEventListener("click", () => {
+        window.location.href = "cart.html";
+      });
+      cartSummary.appendChild(viewCartBtn);
+    }
+  }
+
+  // Adaug produs în coș
+  addToCartBtn.addEventListener("click", () => {
+    const productTitle = document.querySelector(".product-title2").textContent;
+    const productPrice = document.querySelector(".product-price2").textContent.replace(" RON", "");
+
+    cart.push({
+      title: productTitle,
+      price: productPrice,
+      quantity: quantity,
+      image: productImages[currentColor][0],
+      color: currentColor
+    });
+
+    // salvez în localStorage
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    updateCartUI();
+  });
+
+  // afișare dropdown la hover
+  cartBtn.addEventListener("mouseenter", () => {
+    cartDropdown.style.display = "block";
+    const rect = cartBtn.getBoundingClientRect();
+    cartDropdown.style.position = "absolute";
+    cartDropdown.style.top = rect.bottom + "px";
+    cartDropdown.style.left = rect.right - 250 + "px";
+    cartDropdown.style.width = "250px";
+    cartDropdown.style.background = "#fff";
+    cartDropdown.style.border = "1px solid #ccc";
+    cartDropdown.style.padding = "10px";
+    cartDropdown.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
+    cartDropdown.style.zIndex = "200";
+  });
+
+  cartBtn.addEventListener("mouseleave", () => {
+    cartDropdown.style.display = "none";
+  });
+
+  cartDropdown.addEventListener("mouseenter", () => {
+    cartDropdown.style.display = "block";
+  });
+
+  cartDropdown.addEventListener("mouseleave", () => {
+    cartDropdown.style.display = "none";
+  });
+
+  // la încărcare, refac UI-ul din localStorage
+  updateCartUI();
+});
+
+
+
+// meniul hamburger
+
+
+ 
+  const hamburger = document.getElementById("hamburger");
+  const mobileNav = document.getElementById("mobile-nav");
+  const closeBtn = document.getElementById("close-btn");
+
+  hamburger.addEventListener("click", () => {
+    mobileNav.classList.add("open");
+  });
+
+  closeBtn.addEventListener("click", () => {
+    mobileNav.classList.remove("open");
+  });
+
+
+
+  </script>
+</body>
+</html>

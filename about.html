@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagina în construcție</title>
+   <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* HEADER (navbar sus fix) */
+    header {
+      background: #0077B6;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+    }
+    header img {
+      height: 80px;
+      width: auto;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #FFD60A;
+    }
+    .cart-btn {
+      background: #FFD60A;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* Spațiu compensare pentru header fix */
+    .spacer {
+      height: 80px; /* cât înălțimea headerului */
+    }
+
+    /* CONȚINUT CENTRAL */
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
+    }
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+    .loader {
+      border: 6px solid rgba(255, 255, 255, 0.2);
+      border-top: 6px solid #fff;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1.5s linear infinite;
+      margin: 20px auto;
+    }
+    .countdown {
+      font-size: 1.5rem;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0077B6;
+      color: #fff;
+      text-align: center;
+      padding: 30px 20px;
+    }
+    .footer-links {
+      margin-bottom: 20px;
+    }
+    .footer-links a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #fff;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover {
+      color: #FFD60A;
+    }
+    .social-icons i {
+      margin: 0 10px;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .copyright {
+      margin-top: 15px;
+      font-size: 0.9rem;
+    }
+
+    /* ANIMAȚII */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+  <div class="left-section">
+    <button class="hamburger" id="hamburger">&#9776;</button>
+    <a href="index.html"><img src="logo.png" alt="Logo"></a>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="about.html" class="active">Despre noi</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="cart-container">
+    <a href="cart.html">
+      <button class="cart-btn">
+        <i class="fas fa-shopping-cart"></i> Coș 
+        <span id="cart-count">0</span>
+      </button>
+    </a>
+    <div class="cart-dropdown" id="cart-dropdown">
+      <p>Coșul este gol</p>
+    </div>
+  </div>
+
+  <!-- Slidebar (pentru mobil) -->
+  <!-- Slidebar (pentru mobil) -->
+<nav id="mobile-nav">
+  <div class="mobile-nav-header">
+    <button class="close-btn" id="close-btn">&times;</button>
+    <a href="index.html"><img src="logo.png" alt="Logo" class="sidebar-logo"></a>
+  </div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="about.html" class="active">Despre noi</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+</header>
+
+  <!-- spațiu pentru a împinge conținutul sub navbar fix -->
+  <div class="spacer"></div>
+
+  <main>
+    <h1>🚧 Pagina este în construcție 🚧</h1>
+    <p>Lucrăm din greu să aducem ceva fain aici.<br>Revenim în curând!</p>
+    <div class="loader"></div>
+    <div class="countdown" id="countdown">00:00:00</div>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html" class="active">Despre noi</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/profilul-tau" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/_david_b26?igsh=MTliMnB4bHN0eWwxbw==" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://twitter.com/profilul-tau" target="_blank"><i class="fab fa-twitter"></i></a>
+    </div>
+    <div class="copyright">
+      © 2025 CrossWears. Toate drepturile rezervate.
+    </div>
+  </footer>
+
+  <script>
+    const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 3);
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "Curând online!";
+        return;
+      }
+
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        `${hours.toString().padStart(2, '0')}:` +
+        `${minutes.toString().padStart(2, '0')}:` +
+        `${seconds.toString().padStart(2, '0')}`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+
+
+
+    // cos vizibil
+    document.addEventListener("DOMContentLoaded", () => {
+  const cartBtn = document.querySelector(".cart-btn");
+  const cartDropdown = document.createElement("div");
+  cartDropdown.classList.add("cart-dropdown");
+  cartDropdown.style.display = "none";
+  document.body.appendChild(cartDropdown);
+
+  function updateCartDropdown() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cartBtn.innerHTML = `<i class="fas fa-shopping-cart"></i> Coș (${cart.reduce((sum, item) => sum + item.quantity, 0)})`;
+
+    cartDropdown.innerHTML = "";
+    if (cart.length === 0) {
+      cartDropdown.innerHTML = "<p>Coșul este gol</p>";
+      return;
+    }
+
+    cart.forEach(item => {
+      const div = document.createElement("div");
+      div.classList.add("cart-item3");
+      div.innerHTML = `
+        <img src="${item.image}" alt="${item.title}">
+        <div>
+          <p><strong>${item.title} (${item.color})</strong></p>
+          <p>${item.price} RON</p>
+          <p>Cantitate: ${item.quantity}</p>
+        </div>`;
+      cartDropdown.appendChild(div);
+    });
+  }
+
+  // Hover pentru dropdown
+  cartBtn.addEventListener("mouseenter", () => {
+    updateCartDropdown();
+    cartDropdown.style.display = "block";
+    const rect = cartBtn.getBoundingClientRect();
+    cartDropdown.style.position = "absolute";
+    cartDropdown.style.top = rect.bottom + "px";
+    cartDropdown.style.left = rect.right - 250 + "px";
+    cartDropdown.style.width = "250px";
+    cartDropdown.style.background = "#fff";
+    cartDropdown.style.border = "1px solid #ccc";
+    cartDropdown.style.padding = "10px";
+    cartDropdown.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
+    cartDropdown.style.zIndex = "200";
+  });
+
+  cartBtn.addEventListener("mouseleave", () => {
+    cartDropdown.style.display = "none";
+  });
+
+  cartDropdown.addEventListener("mouseenter", () => {
+    cartDropdown.style.display = "block";
+  });
+
+  cartDropdown.addEventListener("mouseleave", () => {
+    cartDropdown.style.display = "none";
+  });
+
+  updateCartDropdown(); // actualizează imediat la load
+});
+
+
+// meniul hamburger
+
+
+ 
+  const hamburger = document.getElementById("hamburger");
+  const mobileNav = document.getElementById("mobile-nav");
+  const closeBtn = document.getElementById("close-btn");
+
+  hamburger.addEventListener("click", () => {
+    mobileNav.classList.add("open");
+  });
+
+  closeBtn.addEventListener("click", () => {
+    mobileNav.classList.remove("open");
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CrossWears</title>
+ 
+  <!-- Iconițe fontawesome -->
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- navbar -->
+<header>
+  <div class="left-section">
+    <button class="hamburger" id="hamburger">&#9776;</button>
+    <a href="index.html"><img src="logo.png" alt="Logo"></a>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="about.html">Despre noi</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="cart-container">
+    <a href="cart.html">
+      <button class="cart-btn">
+        <i class="fas fa-shopping-cart"></i> Coș 
+        <span id="cart-count">0</span>
+      </button>
+    </a>
+    <div class="cart-dropdown" id="cart-dropdown">
+      <p>Coșul este gol</p>
+    </div>
+  </div>
+
+  <!-- Slidebar (pentru mobil) -->
+  <!-- Slidebar (pentru mobil) -->
+<nav id="mobile-nav">
+  <div class="mobile-nav-header">
+    <button class="close-btn" id="close-btn">&times;</button>
+    <a href="index.html"><img src="logo.png" alt="Logo" class="sidebar-logo"></a>
+  </div>
+  <ul>
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="about.html">Despre noi</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+</header>
+
+  <!-- Banner -->
+  <section class="banner">
+    <div class="banner-content">
+      <h1>Bun venit la colecția noastră de tricouri</h1>
+      <a href="shop.html"><button>Vezi colecția</button></a>
+    </div>
+  </section>
+
+  <!-- Produse -->
+  <section class="products" id="shop">
+    <h2>Produse Noi</h2>
+    <div class="product-grid">
+      <!-- Produs 1 -->
+      <div class="product-card">
+        <div class="product-inner">
+          <div class="product-front">
+            <a href="tricou wave.html"><img src="tricou1-front.png" alt="Tricou Față"></a>
+          </div>
+          <div class="product-back">
+            <a href="tricou wave.html"><img src="tricou1-back.png" alt="Tricou Spate"></a>
+          </div>
+        </div>
+      </div>
+      <!-- Produs 2 -->
+      <div class="product-card">
+        <div class="product-inner">
+          <div class="product-front">
+            <img src="tricou2-front.png" alt="Tricou Față">
+          </div>
+          <div class="product-back">
+            <img src="tricou2-back.png" alt="Tricou Spate">
+          </div>
+        </div>
+      </div>
+      <!-- Produs 3 -->
+      <div class="product-card">
+        <div class="product-inner">
+          <div class="product-front">
+            <img src="tricou3-front.png" alt="Tricou Față">
+          </div>
+          <div class="product-back">
+            <img src="tricou3-back.png" alt="Tricou Spate">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">Despre noi</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="social-icons">
+    <a href="https://www.linkedin.com/in/denis-%C8%9Bigan-379a5436a/" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.linkedin.com/in/denis-%C8%9Bigan-379a5436a/" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.linkedin.com/in/denis-%C8%9Bigan-379a5436a/" target="_blank"><i class="fab fa-twitter"></i></a>
+  </div>
+    <div class="copyright">
+      © 2025 CrossWears. Toate drepturile rezervate.
+    </div>
+  </footer>
+<script>
+// cos vizibil
+
+document.addEventListener("DOMContentLoaded", () => {
+  const cartBtn = document.querySelector(".cart-btn");
+  const cartDropdown = document.createElement("div");
+  cartDropdown.classList.add("cart-dropdown");
+  cartDropdown.style.display = "none";
+  document.body.appendChild(cartDropdown);
+
+  function updateCartDropdown() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cartBtn.innerHTML = `<i class="fas fa-shopping-cart"></i> Coș (${cart.reduce((sum, item) => sum + item.quantity, 0)})`;
+
+    cartDropdown.innerHTML = "";
+    if (cart.length === 0) {
+      cartDropdown.innerHTML = "<p>Coșul este gol</p>";
+      return;
+    }
+
+    cart.forEach(item => {
+      const div = document.createElement("div");
+      div.classList.add("cart-item3");
+      div.innerHTML = `
+        <img src="${item.image}" alt="${item.title}">
+        <div>
+          <p><strong>${item.title} (${item.color})</strong></p>
+          <p>${item.price} RON</p>
+          <p>Cantitate: ${item.quantity}</p>
+        </div>`;
+      cartDropdown.appendChild(div);
+    });
+  }
+
+  // Hover pentru dropdown
+  cartBtn.addEventListener("mouseenter", () => {
+    updateCartDropdown();
+    cartDropdown.style.display = "block";
+    const rect = cartBtn.getBoundingClientRect();
+    cartDropdown.style.position = "absolute";
+    cartDropdown.style.top = rect.bottom + "px";
+    cartDropdown.style.left = rect.right - 250 + "px";
+    cartDropdown.style.width = "250px";
+    cartDropdown.style.background = "#fff";
+    cartDropdown.style.border = "1px solid #ccc";
+    cartDropdown.style.padding = "10px";
+    cartDropdown.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
+    cartDropdown.style.zIndex = "200";
+  });
+
+  cartBtn.addEventListener("mouseleave", () => {
+    cartDropdown.style.display = "none";
+  });
+
+  cartDropdown.addEventListener("mouseenter", () => {
+    cartDropdown.style.display = "block";
+  });
+
+  cartDropdown.addEventListener("mouseleave", () => {
+    cartDropdown.style.display = "none";
+  });
+
+  updateCartDropdown(); // actualizează imediat la load
+});
+
+
+
+
+// meniul hamburger
+
+
+ 
+  const hamburger = document.getElementById("hamburger");
+  const mobileNav = document.getElementById("mobile-nav");
+  const closeBtn = document.getElementById("close-btn");
+
+  hamburger.addEventListener("click", () => {
+    mobileNav.classList.add("open");
+  });
+
+  closeBtn.addEventListener("click", () => {
+    mobileNav.classList.remove("open");
+  });
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
+
+

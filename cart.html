@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="cart3" lang="ro">
+<head>
+  <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Coșul meu</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
+  
+</head>
+
+<body class="cart2">
+ <header>
+  <div class="left-section">
+    <button class="hamburger" id="hamburger">&#9776;</button>
+    <a href="index.html"><img src="logo.png" alt="Logo"></a>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="about.html">Despre noi</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="cart-container">
+    <a href="cart.html">
+      <button class="cart-btn">
+        <i class="fas fa-shopping-cart"></i> Coș 
+        <span id="cart-count">0</span>
+      </button>
+    </a>
+    <div class="cart-dropdown" id="cart-dropdown">
+      <p>Coșul este gol</p>
+    </div>
+  </div>
+
+  <!-- Slidebar (pentru mobil) -->
+  <!-- Slidebar (pentru mobil) -->
+<nav id="mobile-nav">
+  <div class="mobile-nav-header">
+    <button class="close-btn" id="close-btn">&times;</button>
+    <a href="index.html"><img src="logo.png" alt="Logo" class="sidebar-logo"></a>
+  </div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="about.html">Despre noi</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+</header>
+    <main class="cart">
+        <div class="cart-container3">
+            <h1 class="cart-title3">Coșul tău</h1>
+            <div id="cart-items3" class="cart-items3"></div>
+            <div id="cart-total3" class="cart-total3"></div>
+            <div class="cart-actions3">
+            <button id="cart-clear3" class="cart-btn3">Golește coșul</button>
+            <button id="cart-checkout3" class="cart-btn3">Finalizează comanda</button>
+            </div>
+        </div>
+    </main>
+  <footer class="cart4">
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">Despre noi</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="social-icons">
+    <a href="https://www.facebook.com/profilul-tau" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.instagram.com/_david_b26?igsh=MTliMnB4bHN0eWwxbw==" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://twitter.com/profilul-tau" target="_blank"><i class="fab fa-twitter"></i></a>
+  </div>
+    <div class="copyright">
+      © 2025 CrossWears. Toate drepturile rezervate.
+    </div>
+  </footer>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const cartItemsContainer = document.getElementById("cart-items3");
+      const cartTotalContainer = document.getElementById("cart-total3");
+      const clearCartBtn = document.getElementById("cart-clear3");
+      const checkoutBtn = document.getElementById("cart-checkout3");
+
+      function renderCart() {
+        cartItemsContainer.innerHTML = "";
+        let total = 0;
+
+        if (cart.length === 0) {
+          cartItemsContainer.innerHTML = "<p>Coșul este gol.</p>";
+          cartTotalContainer.textContent = "";
+          return;
+        }
+
+        cart.forEach((item, index) => {
+          const div = document.createElement("div");
+          div.classList.add("cart-item3");
+          div.innerHTML = `
+            <img src="${item.image}" alt="${item.title}">
+            <div class="cart-item-details3">
+              <p><strong>${item.title} (${item.color})</strong></p>
+              <p>Preț: ${item.price} RON</p>
+              <p>Cantitate: ${item.quantity}</p>
+            </div>
+            <div>
+              <button class="cart-item-remove3" data-index="${index}">Șterge</button>
+            </div>
+          `;
+          cartItemsContainer.appendChild(div);
+
+          total += parseFloat(item.price) * item.quantity;
+        });
+
+        cartTotalContainer.textContent = `Total: ${total.toFixed(2)} RON`;
+
+        // Butoane pentru ștergere
+        document.querySelectorAll(".cart-item-remove3").forEach(btn => {
+          btn.addEventListener("click", (e) => {
+            const index = e.target.getAttribute("data-index");
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            renderCart();
+          });
+        });
+      }
+
+      clearCartBtn.addEventListener("click", () => {
+        localStorage.removeItem("cart");
+        cart = [];
+        renderCart();
+      });
+
+      checkoutBtn.addEventListener("click", () => {
+        alert("Comanda ta a fost trimisă!");
+        localStorage.removeItem("cart");
+        cart = [];
+        renderCart();
+      });
+
+      renderCart();
+    });
+
+
+
+
+    // dropdown menu vizibil peste tot
+    document.addEventListener("DOMContentLoaded", () => {
+  const cartBtn = document.querySelector(".cart-btn");
+  const cartDropdown = document.createElement("div");
+  cartDropdown.classList.add("cart-dropdown");
+  cartDropdown.style.display = "none";
+  document.body.appendChild(cartDropdown);
+
+  function updateCartDropdown() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cartBtn.innerHTML = `<i class="fas fa-shopping-cart"></i> Coș (${cart.reduce((sum, item) => sum + item.quantity, 0)})`;
+
+    
+    cartDropdown.innerHTML = "";
+    if (cart.length === 0) {
+      cartDropdown.innerHTML = "<p>Coșul este gol</p>";
+      return;
+    }
+
+    cart.forEach(item => {
+      const div = document.createElement("div");
+      div.classList.add("cart-item3");
+      div.innerHTML = `
+        <img src="${item.image}" alt="${item.title}">
+        <div>
+          <p><strong>${item.title} (${item.color})</strong></p>
+          <p>${item.price} RON</p>
+          <p>Cantitate: ${item.quantity}</p>
+        </div>`;
+      cartDropdown.appendChild(div);
+    });
+  }
+
+  // Hover pentru dropdown
+  cartBtn.addEventListener("mouseenter", () => {
+    updateCartDropdown();
+    cartDropdown.style.display = "block";
+    const rect = cartBtn.getBoundingClientRect();
+    cartDropdown.style.position = "absolute";
+    cartDropdown.style.top = rect.bottom + "px";
+    cartDropdown.style.left = rect.right - 250 + "px";
+    cartDropdown.style.width = "250px";
+    cartDropdown.style.background = "#fff";
+    cartDropdown.style.border = "1px solid #ccc";
+    cartDropdown.style.padding = "10px";
+    cartDropdown.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
+    cartDropdown.style.zIndex = "200";
+  });
+
+  cartBtn.addEventListener("mouseleave", () => {
+    cartDropdown.style.display = "none";
+  });
+
+  cartDropdown.addEventListener("mouseenter", () => {
+    cartDropdown.style.display = "block";
+  });
+
+  cartDropdown.addEventListener("mouseleave", () => {
+    cartDropdown.style.display = "none";
+  });
+
+  updateCartDropdown(); // actualizează imediat la load
+});
+
+
+// meniul hamburger
+
+
+ 
+  const hamburger = document.getElementById("hamburger");
+  const mobileNav = document.getElementById("mobile-nav");
+  const closeBtn = document.getElementById("close-btn");
+
+  hamburger.addEventListener("click", () => {
+    mobileNav.classList.add("open");
+  });
+
+  closeBtn.addEventListener("click", () => {
+    mobileNav.classList.remove("open");
+  });
+</script>
+</body>
+</html>
