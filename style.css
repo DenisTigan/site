@@ -3,19 +3,25 @@
       padding: 0;
       box-sizing: border-box;
     }
-    html{
-      height: 100%; /*footer jos la fel si la body */
-      margin: 0;
-      flex-direction: column;
-    }
+  html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
     body {
       height: 100%; 
       margin: 0;
+      display: flex;
       flex-direction: column;
       font-family: Arial, sans-serif;
       color: #333;
+    
     }
-
+      main { /*modificare pt footer la cart */
+        flex: 1; /* ia tot spațiul liber și împinge footer-ul jos */
+        display: block;
+      }
     /* Navbar */
     header {
       background: #0077B6;
@@ -254,7 +260,6 @@
 .product-page {
   padding: 60px 10%;
   background-color: #f5f5f5;
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -563,6 +568,7 @@
       max-width: 800px;
       margin: 40px auto;
       font-family: Arial, sans-serif;
+      padding: 20px;
     }
     .cart-title3 {
       font-size: 28px;
@@ -877,51 +883,6 @@
 }
 
 /* responsive pagina cart */
-@media (max-width: 800px) {
-  .cart-item3 {
-    flex-direction: column;       /* elementele se pun unul sub altul */
-    align-items: flex-start;      /* aliniere la stânga */
-    gap: 8px;                     /* mic spațiu între ele */
-  }
 
-  .cart-item3 img {
-    margin: 0;                    /* scoate marginile mari */
-    width: 120px;                 /* un pic mai vizibil pe mobil */
-  }
-
-  .cart-item-details3 {
-    width: 100%;
-    margin: 0; 
-  }
-
-  .cart-item-details3 p {
-    margin: 2px 0;                /* mai compacte textele */
-    font-size: 14px;
-  }
-
-  .cart-item-remove3 {
-    margin: 5px 0 0 0;            /* aproape de detalii */
-    align-self: flex-start;       /* să rămână lângă text, nu împins în dreapta */
-  }
-
-  .cart-total3 {
-    text-align: center;
-    font-size: 16px;
-    margin-top: 15px;
-  }
-
-  .cart-actions3 {
-    display: flex;
-    flex-direction: column;       /* butoanele sub total */
-    gap: 10px;
-    margin-top: 15px;
-    text-align: center;
-  }
-
-  .cart-btn3 {
-    width: 100%;                  /* fiecare buton pe toată lățimea */
-    margin: 0;
-  }
-}
 
 
