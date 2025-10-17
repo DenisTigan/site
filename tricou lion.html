@@ -100,9 +100,9 @@
         <div class="product-colors2">
           <span>Culoare</span>
           <div class="color-options2">
+            <span class="color-circle2" data-color="negru" style="background:black;"></span>
             <span class="color-circle2" data-color="alb" style="background:white;"></span>
             <span class="color-circle2" data-color="verde" style="background:green;"></span>
-            <span class="color-circle2" data-color="negru" style="background:black;"></span>
           </div>
         </div>
         <!-- butoane -->
@@ -163,12 +163,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // === Slider imagini + culori ===
   let currentIndex = 0;
-  let currentColor = "alb";
+  let currentColor = "negru";
 
   const productImages = {
+    negru: ["image/tricou lion front black.png", "image/tricou lion back black.png"],
     alb: ["image/tricou lion front.png", "image/tricou lion back.png"],
-    verde: ["image/tricou lion front verde.png", "image/tricou lion back verde.png"],
-    negru: ["image/tricou lion front black.png", "image/tricou lion back black.png"]
+    verde: ["image/tricou lion front verde.png", "image/tricou lion back verde.png"]
   };
 
   const images = document.querySelectorAll(".product-image2 img");

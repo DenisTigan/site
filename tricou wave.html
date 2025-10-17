@@ -100,6 +100,7 @@
         <div class="product-colors2">
           <span>Culoare</span>
           <div class="color-options2">
+            <span class="color-circle2" data-color="portocaliu" style="background:rgb(255, 115, 0);"></span>
             <span class="color-circle2" data-color="alb" style="background:white;"></span>
             <span class="color-circle2" data-color="verde" style="background:green;"></span>
             <span class="color-circle2" data-color="negru" style="background:black;"></span>
@@ -163,9 +164,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // === Slider imagini + culori ===
   let currentIndex = 0;
-  let currentColor = "alb";
+  let currentColor = "portocaliu";
 
   const productImages = {
+    portocaliu: ["image/tricou wave front portocaliu.png", "image/tricou wave back portocaliu.png"],
     alb: ["image/tricou wave front.png", "image/tricou wave back.png"],
     verde: ["image/tricou wave front verde.png", "image/tricou wave back verde.png"],
     negru: ["image/tricou wave front black.png", "image/tricou wave back black.png"]
