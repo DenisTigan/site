@@ -58,12 +58,27 @@
 </header>
 <main>
   <!-- Banner -->
-  <section class="banner">
+  <!-- <section class="banner">
     <div class="banner-content">
       <h1>Bun venit la colecția noastră de tricouri</h1>
       <a href="shop.html"><button>Vezi colecția</button></a>
     </div>
-  </section>
+  </section> -->
+
+  <section class="banner">
+  <div class="banner-slider">
+    <div class="slide active" style="background-image: url('carusel/carusel1.jpg');"></div>
+    <div class="slide" style="background-image: url('carusel/carusel2.jpg');"></div>
+    <div class="slide" style="background-image: url('carusel/carusel3.jpg');"></div>
+    <div class="slide" style="background-image: url('carusel/carusel4.jpg');"></div>
+    <div class="slide" style="background-image: url('carusel/carusel5.jpg');"></div>
+  </div>
+
+  <div class="banner-content">
+    <h1>Bun venit la colecția noastră de tricouri</h1>
+    <a href="shop.html"><button>Vezi colecția</button></a>
+  </div>
+</section>
 
   <!-- Produse -->
   <section class="products" id="shop">
@@ -209,7 +224,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
+// carusel de imagini
+  const slides = document.querySelectorAll('.banner .slide');
+  let current = 0;
 
+  function nextSlide() {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }
+
+  setInterval(nextSlide, 5000); // schimbă imaginea la fiecare 5 secunde
 
 
 
